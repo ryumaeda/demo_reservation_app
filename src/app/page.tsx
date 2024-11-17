@@ -1,101 +1,137 @@
+"use client";
+
+import Table from "./components/Table";
+import TextBox from "./components/TextBox";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
+  const [showMembers, setShowMembers] = useState(false);
+  const [showRestaurants, setShowRestaurants] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSearchRestaurants = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setShowMembers(true);
+      setLoading(false);
+    }, 1500);
+  };
+
+  const handleConfirmMembers = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setShowRestaurants(true);
+      setLoading(false);
+    }, 1500);
+  };
+
+  const handleReservation = () => {
+    router.push("/check");
+  };
+
+  return (
+    <div>
+      <main className="h-screen">
+        <div className="flex justify-center text-4xl font-bold">幹事くん</div>
+        <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-8 w-9/12">
+          <TextBox />
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={handleSearchRestaurants}
+              className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+            >
+              お店を予約して
+            </button>
+          </div>
         </div>
+
+        {loading && !showMembers && !showRestaurants && (
+          <div className="flex justify-center items-center mt-16">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        )}
+
+        {showMembers && (
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+            <div className="flex justify-center font-bold text-xl">
+              参加者は以下のメンバーですか？
+            </div>
+            <Table />
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={handleConfirmMembers}
+                className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+              >
+                このメンバーで予約して
+              </button>
+            </div>
+          </div>
+        )}
+
+        {loading && showMembers && !showRestaurants && (
+          <div className="flex justify-center items-center mt-16">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        )}
+
+        {showRestaurants && (
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+            <div className="flex justify-center font-bold text-xl">
+              要望にマッチする店が見つかりました！
+            </div>
+            <div className="flex justify-center mt-8">
+              <div className="flex gap-8">
+                <div className="rounded-2xl border border-gray-200 shadow-lg p-6 bg-white/50 w-96">
+                  <Image
+                    src="/restaurant1.png"
+                    alt="和食レストラン1"
+                    width={384}
+                    height={192}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h3 className="text-xl font-bold mb-2">
+                    和食居酒屋 ほげほげ
+                  </h3>
+                  <p className="text-gray-600 mb-1">¥4,500/人</p>
+                  <p className="text-gray-600 mb-4">
+                    季節の会席コース 2時間飲み放題付
+                  </p>
+                  <button
+                    onClick={handleReservation}
+                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+                  >
+                    この店を予約
+                  </button>
+                </div>
+
+                <div className="rounded-2xl border border-gray-200 shadow-lg p-6 bg-white/50 w-96">
+                  <Image
+                    src="/restaurant2.png"
+                    alt="和食レストラン2"
+                    width={384}
+                    height={192}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h3 className="text-xl font-bold mb-2">割烹 ほげほげ</h3>
+                  <p className="text-gray-600 mb-1">¥5,500/人</p>
+                  <p className="text-gray-600 mb-4">
+                    贅沢鮮魚コース 2.5時間飲み放題付
+                  </p>
+                  <button
+                    onClick={handleReservation}
+                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+                  >
+                    この店を予約
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
