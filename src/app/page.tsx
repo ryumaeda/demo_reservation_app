@@ -36,12 +36,12 @@ export default function Home() {
     <div>
       <main className="h-screen">
         <div className="flex justify-center text-4xl font-bold">幹事くん</div>
-        <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-8 w-9/12">
+        <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-8 w-9/12">
           <TextBox />
           <div className="flex justify-center mt-6">
             <button
               onClick={handleSearchRestaurants}
-              className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+              className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-xl hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
             >
               お店を予約して
             </button>
@@ -55,7 +55,7 @@ export default function Home() {
         )}
 
         {showMembers && (
-          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
             <div className="flex justify-center font-bold text-xl">
               参加者は以下のメンバーですか？
             </div>
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="flex justify-center mt-6">
               <button
                 onClick={handleConfirmMembers}
-                className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+                className="px-8 py-4 text-xl text-white bg-blue-500 rounded-lg shadow-xl hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
               >
                 このメンバーで予約して
               </button>
@@ -78,13 +78,13 @@ export default function Home() {
         )}
 
         {showRestaurants && (
-          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
             <div className="flex justify-center font-bold text-xl">
               要望にマッチする店が見つかりました！
             </div>
             <div className="flex justify-center mt-8">
               <div className="flex gap-8">
-                <div className="rounded-2xl border border-gray-200 shadow-lg p-6 bg-white/50 w-96">
+                <div className="rounded-2xl border border-gray-200 shadow-xl p-6 bg-white/50 w-96">
                   <Image
                     src="/restaurant1.png"
                     alt="和食レストラン1"
@@ -101,13 +101,13 @@ export default function Home() {
                   </p>
                   <button
                     onClick={handleReservation}
-                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow-xl hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
                   >
                     この店を予約
                   </button>
                 </div>
 
-                <div className="rounded-2xl border border-gray-200 shadow-lg p-6 bg-white/50 w-96">
+                <div className="rounded-2xl border border-gray-200 shadow-xl p-6 bg-white/50 w-96">
                   <Image
                     src="/restaurant2.png"
                     alt="和食レストラン2"
@@ -122,7 +122,7 @@ export default function Home() {
                   </p>
                   <button
                     onClick={handleReservation}
-                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
+                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg shadow-xl hover:bg-blue-600 transform hover:scale-105 transition duration-200 ease-in-out"
                   >
                     この店を予約
                   </button>

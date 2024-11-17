@@ -31,12 +31,12 @@ const Check = () => {
         )}
 
         {showReservation && (
-          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
             <div className="flex justify-center font-bold text-xl">
               予約完了
             </div>
             <div className="flex gap-8 mt-10">
-              <div className="rounded-2xl border border-gray-200 shadow-lg p-6 bg-white/50 w-96">
+              <div className="rounded-2xl border border-gray-200 shadow-xl p-6 bg-white/50 w-96">
                 <Image
                   src="/restaurant2.png"
                   alt="和食レストラン2"
@@ -91,7 +91,7 @@ const Check = () => {
         )}
 
         {showQRCode && (
-          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
             <div className="flex justify-center items-center font-bold text-xl">
               <Image src="/paypay.png" alt="PayPay" width={100} height={30} />{" "}
               QRコード発行完了
@@ -114,11 +114,11 @@ const Check = () => {
         )}
 
         {showEmail && (
-          <div className="mx-auto rounded-3xl border border-gray-200 shadow-lg p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
+          <div className="mx-auto rounded-3xl border border-gray-200 shadow-xl p-8 bg-white/50 mt-16 w-9/12 animate-fade-in">
             <div className="flex justify-center font-bold text-xl mb-6">
               メール送付完了
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mx-8 font-mono overflow-auto">
+            <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mx-8 font-mono overflow-auto shadow-lg">
               <p className="mb-4">件名: 【幹事くん】飲み会のご案内</p>
               <div className="whitespace-pre-wrap text-gray-700">
                 {`From: 幹事くん <kanji@kanjiapp.com>
